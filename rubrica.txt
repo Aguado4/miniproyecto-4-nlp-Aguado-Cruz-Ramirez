@@ -1,0 +1,30 @@
+Criterios de calificación
+Rúbrica
+Jupyter Notebook Completo	
+Deficiente: El entregable no muestra un desarrollo coherente o completo de la actividad. Se percibe que hacen falta celdas de código o comentarios que detallen el proceso o conclusiones sobre los resultados.
+0.25 puntos
+Estándar: El entregable contiene celdas de código y algunos comentarios, aunque no detalle el procedimiento o no realiza conclusiones sobre los resultados.
+0.5 puntos
+Muy bien: El entregable cuenta con celdas de código que implemente el modelo/programa solicitado además de los respectivos comentarios detallando el procedimiento. Finalmente aporta conclusiones sobre los resultados obtenidos.
+1 puntos
+Reproducibilidad de los resultados	
+Deficiente: No es posible reproducir los resultados del Notebook, la ejecución de la mayoría de las celdas falla o no es posible correrlas.
+0.5 puntos
+Estándar: La mayoría de las celdas del notebook corren y se pueden reproducir los resultados esperados, aunque existen algunas de ellas que no corren correctamente o entregan resultados diferentes de los presentados.
+1 puntos
+Muy bien: Todas las celdas de código ejecutan correctamente y se pueden obtener los resultados originales presentados al correr el notebook desde cero.
+2 puntos
+Implementación de modelo de generación de texto.	
+Deficiente: Se evidencia una implementación incompleta del modelo de generación, no se evidencia el proceso de entrenamiento o los resultados obtenidos son muy pobres. Se evidencian varias imprecisiones en el manejo de los conceptos.
+0.5 puntos
+Estándar: Se evidencia la implementación del modelo de generación de texto, aunque hace falta mostrar los resultados de entrenamiento y/o ejemplos de generación. Se evidencia la presencia de conclusiones respecto a la tarea, aunque con imprecisiones en el manejo de los conceptos.
+1 puntos
+Muy bien: Se evidencia la implementación del modelo de generación de texto mostrando los resultados del entrenamiento, así como ejemplos de generación del modelo resultante y conclusiones de la tarea haciendo uso adecuado de los conceptos.
+2 puntos
+Innovación	
+Deficiente: No se evidencia innovación sustancial con respecto al notebook de ejemplo (No añade nada o muy poco nuevo)
+0.5 puntos
+Estándar: Se evidencian algunas variaciones de autoría propia al trabajo con respecto al notebook de ejemplo que aportan al propósito del caso en cuestión.
+1 puntos
+Muy bien: Se evidencian varias aportaciones valiosas de autoría propia al trabajo respecto al notebook de ejemplo. No solo aportan al propósito del caso, sino que potencian el trabajo más allá de lo básico
+2 puntos

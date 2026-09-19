@@ -1,0 +1,31 @@
+# Miniproyecto 4 — NLP
+# Instalación local:  pip install -r requirements.txt
+#                     python -m spacy download es_core_news_lg
+# En Colab la mayoría ya viene preinstalado; el notebook instala solo lo que falta.
+
+# --- Datos y cómputo numérico ---
+numpy>=1.26
+pandas>=2.2
+scipy>=1.13
+scikit-learn>=1.5
+
+# --- Corpus y checkpoints ---
+datasets>=2.19
+huggingface-hub>=0.23
+
+# --- Modelos generativos ---
+torch>=2.6               # los checkpoints DeepESP/datificate solo traen .bin (carga segura exige 2.6+)
+transformers>=4.41
+accelerate>=0.30
+peft>=0.11               # LoRA, §9
+
+# --- Solo para el EDA heredado ---
+spacy>=3.7
+ftfy>=6.2
+
+# --- Visualización y entorno ---
+matplotlib>=3.8
+seaborn>=0.13
+jupyterlab>=4.0
+ipywidgets>=8.1
+tqdm>=4.66
