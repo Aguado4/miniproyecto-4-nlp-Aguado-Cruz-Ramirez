@@ -19,7 +19,7 @@ usa su dataset**: se trabaja sobre `vg055/Rest-Mex2025`.
 
 ### Relación con las entregas anteriores
 
-- **Secciones 1–4.3 heredadas del Miniproyecto 1 SIN MODIFICAR** (celdas 3–70), con celdas
+- **Secciones 1–4.3 heredadas del Miniproyecto 1 SIN MODIFICAR** (celdas 3–65), con celdas
   puente antes y después. **No editar esas celdas** (tag `heredado-mp1`; una celda verifica la
   identidad). Lo propio empieza en §4.4 y usa `CFG_GPT` / `MAX_LEN_GPT`; nunca reasignar `CFG`,
   `MAX_LEN`, `evaluar`, `df`, `ds`, `conteo` ni los splits heredados (§D-402).
@@ -39,7 +39,8 @@ D-401) · `docs/EXPERIMENTS.md` (solo números ejecutados).
   cada bloque de generación** (el muestreo es aleatorio).
 - Sin rutas locales; checkpoints desde HuggingFace Hub. Sin checkpoints en disco.
 - GPU/CPU detectados; en CPU se degrada (`n_train_max`, menos muestras), nunca falla.
-- Presupuesto ≤ 45 min en T4 (ver `PLAN.md`).
+- Presupuesto ~30 min (medido en RTX 4060 local; ver `PLAN.md` y D-411). El notebook debe
+  poder reproducirlo quien lo evalúa, así que el presupuesto manda sobre la métrica.
 
 ### 3.2 Narrativa — 1 punto
 
@@ -53,8 +54,9 @@ con los conceptos bien usados (modelado causal, decodificación, perplejidad).
 
 ### 3.4 Innovación — 2 puntos
 
-Control por prefijo + juez, `generate` corregido y medido, LoRA y checkpoints, generador como
-clasificador, memorización, aumento de datos, demo (SPEC §6).
+Control por prefijo + juez, `generate` corregido y medido, LoRA y checkpoints, condición
+balanceada, generador como clasificador, memorización, aumento de datos con y sin filtro del
+juez, demo (SPEC §6).
 
 ## 4. Convenciones técnicas
 

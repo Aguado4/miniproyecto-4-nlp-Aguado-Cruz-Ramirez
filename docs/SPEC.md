@@ -68,7 +68,9 @@ generador entrenado sobre el train de Split A.
 | **Copia** (8-gramas presentes en train, similitud TF-IDF máxima) | ¿Memoriza? | §11 |
 | **macro-F1 de TF-IDF + LogReg** con/sin aumento | Utilidad | §12 |
 
-- `CFG_GPT` para las corridas principales; `CFG_EST` (8.000 reseñas, 1 época) para §9.
+- `CFG_GPT` (10.000 reseñas, 3 épocas) para las corridas principales; `CFG_EST` (3.000
+  reseñas, 3 épocas) para §9. El reparto entre reseñas y épocas se fijó midiendo su efecto
+  sobre el control, no por criterio (D-411).
 - El juez se calibra reportando su propio acierto sobre reseñas reales de test.
 
 ## 4. Estructura del notebook
@@ -79,7 +81,7 @@ Archivo único: `notebooks/miniproyecto4_restmex_gpt.ipynb`
 
 ### Secciones 1–4.3 — Bloque heredado del Miniproyecto 1
 
-Celdas 3–70 del notebook de MP1 **sin modificar** (entorno, corpus, EDA, protocolo, `evaluar`,
+Celdas 3–65 del notebook de MP1 **sin modificar** (entorno, corpus, EDA, protocolo, `evaluar`,
 baselines), con celdas puente antes y después, verificación de identidad y assert de baselines.
 
 ### Secciones 4.4–4.8 — Protocolo propio
@@ -119,10 +121,12 @@ sobre la reseña), control por estrella (matriz de confusión juez × estrella p
    temperatura, top-k, top-p y ε-codiciosa del guía, en diversidad, repetición, fluidez y
    control. Gráfica de compromiso diversidad–control.
 
-### Sección 9 — Estudios con `CFG_EST`: LoRA y otro checkpoint
+### Sección 9 — Estudios con `CFG_EST`: LoRA, otro checkpoint y condición balanceada
 
-*Fine-tuning* completo vs. LoRA (`c_attn`, r=8) vs. `DeepESP/gpt2-spanish` completo, mismas
-8.000 reseñas: perplejidad, control, % de parámetros entrenables, tiempo.
+*Fine-tuning* completo vs. LoRA (`c_attn`, r=8) vs. `DeepESP/gpt2-spanish` completo vs. el mismo
+ajuste con **igual número de reseñas por estrella**: perplejidad (por token y por palabra, la
+única comparable entre tokenizadores distintos), control, % de parámetros entrenables, tiempo.
+La cuarta fila responde si el control por prefijo falla por escasez de 1★ y 2★ (D-412).
 
 ### Sección 10 — El generador como clasificador (aporte propio)
 
@@ -138,12 +142,16 @@ frente a la misma medida en reseñas reales de test (que tampoco se vieron).
 ### Sección 12 — Aumento de datos para la clasificación (aporte propio, H3)
 
 TF-IDF + LogReg (modelo 1 de MP1) entrenado con: (a) train real, (b) + sobremuestreo de
-1★–3★, (c) + reseñas sintéticas de 1★–3★ del generador condicional. Mismo test de MP1.
+1★–3★, (c) + reseñas sintéticas de 1★–3★ del generador condicional, (d) + esas mismas
+sintéticas **filtradas por el juez** (muestreo por rechazo: se conservan solo las que se leen
+como la estrella pedida). Mismo test de MP1. La variante (d) tiene una circularidad declarada:
+el filtro y el clasificador son el mismo modelo, y la lectura la analiza.
 
 ### Sección 13 — Demo
 
-`generar_resena(estrellas, tipo, inicio)`, con pares fijos (misma apertura a 1★ y a 5★; hotel
-frente a restaurante) y un widget opcional.
+`generar_resena(estrellas, tipo, inicio)`, con pares fijos: misma apertura pedida a 1★ y a 5★,
+hotel frente a restaurante, y una apertura negativa pedida como 5★ para ver si el modelo la
+endereza.
 
 ### Sección 14 — Análisis cualitativo y modos de falla
 
@@ -154,11 +162,13 @@ truncado o vacío, polaridad cruzada, «alucinaciones» de lugares.
 
 ## 5. Criterios de aceptación
 
-- [ ] «Restart & Run All» sin errores en ≤ 45 min con T4.
-- [ ] Bloque heredado idéntico a MP1 y baselines reproducidos.
-- [ ] Resultados de entrenamiento (curvas, perplejidad) y ejemplos de generación en §6 y §7.
-- [ ] Ningún defecto del guía replicado (§D-403, §D-405).
-- [ ] Toda gráfica/tabla con su lectura; conclusiones responden H1–H3.
+- [x] «Restart & Run All» sin errores; ~30 min en RTX 4060 local (D-411).
+- [x] Bloque heredado idéntico a MP1 (63 celdas) y baselines reproducidos.
+- [x] Resultados de entrenamiento (curvas por pasos, perplejidad) y ejemplos de generación en
+  §6 y §7.
+- [x] Ningún defecto del guía replicado (D-403, D-405), y la corrección de `generate`
+  verificada: con `eps = 1` coincide token a token con la codiciosa de Hugging Face.
+- [x] Toda gráfica/tabla con su lectura; conclusiones responden H1–H3.
 
 ## 6. Mapa rúbrica → notebook
 
